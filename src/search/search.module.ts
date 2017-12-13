@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,11 +6,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
+import {reducers, effects} from './store';
+
 import * as fromContainers from './containers';
 
 import * as fromComponents from './components';
+import {SharedModule} from '../shared/SharedModule';
 
-import * as fromServices from './services';
 
 export const ROUTES: Routes = [
   {
@@ -22,12 +23,15 @@ export const ROUTES: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forChild(ROUTES)
+    SharedModule,
+    RouterModule.forChild(ROUTES),
+    StoreModule.forFeature('search', reducers),
+    EffectsModule.forFeature(effects)
+
   ],
-  providers: [...fromServices.services],
+  providers: [],
   declarations: [...fromContainers.containers],
   exports: [...fromContainers.containers]
 })

@@ -5,18 +5,16 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './containers/app.component';
 import {RouterModule, Routes} from '@angular/router';
-import {storeFreeze} from 'ngrx-store-freeze';
 import {environment} from '../environments/environment';
-import {MetaReducer, StoreModule} from '@ngrx/store';
-import {PrimeNgModule} from './primeng/prime.ng';
+import {PrimeNgModule} from '../shared/primeng/prime.ng';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {StoreRouterConnectingModule} from '@ngrx/router-store';
+import {reducers} from '../search/store/reducers';
+import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import {storeFreeze} from 'ngrx-store-freeze';
+import { FilmListComponent } from '../shared/components/film-list/film-list.component';
+import {SharedModule} from 'primeng/primeng';
 
-
-export const metaReducers: MetaReducer<any>[] = !environment.production
-  ? [storeFreeze]
-  : [];
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'search'},
@@ -26,14 +24,21 @@ export const ROUTES: Routes = [
   }
 ];
 
+export const metaReducers: MetaReducer<any>[] = !environment.production
+  ? [storeFreeze]
+  : [];
+
 
 @NgModule({
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    PrimeNgModule,
+    SharedModule,
     RouterModule.forRoot(ROUTES),
-    StoreModule.forFeature('search',{})
+    StoreModule.forRoot({}, { metaReducers }),
+    EffectsModule.forRoot([]),
+
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
   declarations: [AppComponent],

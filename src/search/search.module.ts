@@ -11,7 +11,7 @@ import {reducers, effects} from './store';
 import * as fromContainers from './containers';
 
 import * as fromComponents from './components';
-import {SharedModule} from '../shared/SharedModule';
+import {SharedModule} from '../shared/shared.module';
 
 
 export const ROUTES: Routes = [
@@ -29,7 +29,6 @@ export const ROUTES: Routes = [
     RouterModule.forChild(ROUTES),
     StoreModule.forFeature('search', reducers),
     EffectsModule.forFeature(effects)
-
   ],
   providers: [],
   declarations: [...fromContainers.containers],

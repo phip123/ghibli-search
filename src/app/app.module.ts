@@ -10,7 +10,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {storeFreeze} from 'ngrx-store-freeze';
-import {SharedModule} from 'primeng/primeng';
+import {SharedModule} from '../shared/shared.module';
 
 
 export const ROUTES: Routes = [

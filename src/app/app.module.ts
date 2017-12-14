@@ -6,13 +6,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './containers/app.component';
 import {RouterModule, Routes} from '@angular/router';
 import {environment} from '../environments/environment';
-import {PrimeNgModule} from '../shared/primeng/prime.ng';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-import {reducers} from '../search/store/reducers';
 import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {storeFreeze} from 'ngrx-store-freeze';
-import { FilmListComponent } from '../shared/components/film-list/film-list.component';
 import {SharedModule} from 'primeng/primeng';
 
 

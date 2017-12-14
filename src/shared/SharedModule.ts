@@ -1,14 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {PrimeNgModule} from './primeng/prime.ng';
 import {services} from './services';
 import {components} from './components';
+import {MaterialModule} from './MaterialModule';
 
 
 @NgModule({
   imports: [
     CommonModule,
-    PrimeNgModule
+    MaterialModule
   ],
   providers: [...services],
   declarations: [...components],

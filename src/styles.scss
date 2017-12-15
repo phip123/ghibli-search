@@ -12,3 +12,12 @@
   // use our theme with angular-material-theme mixin
   @include angular-material-theme($candy-app-theme);
 }
+
+
+body {
+  margin: 0;
+}
+
+.basic-container {
+  padding: 5px;
+}

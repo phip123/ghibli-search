@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class SearchDashboardComponent implements OnInit {
 
   public criterias = [
-    { name: 'Movies', link: '/movies' },
-    { name: 'People', link: '/people' },
-    { name: 'Locations', link: '/locations' },
-    { name: 'Species', link: '/species' }
+    { name: 'Movies', link: 'movies' },
+    { name: 'People', link: 'people' },
+    { name: 'Locations', link: 'locations' },
+    { name: 'Species', link: 'species' }
   ];
 
   constructor() { }

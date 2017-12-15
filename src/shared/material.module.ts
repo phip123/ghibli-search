@@ -7,6 +7,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSidenavModule,
     LayoutModule,
     MatListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressBarModule
   ],
   exports: [
     MatExpansionModule,
@@ -27,7 +29,8 @@ import {MatChipsModule} from '@angular/material/chips';
     MatSidenavModule,
     LayoutModule,
     MatListModule,
-    MatChipsModule
+    MatChipsModule,
+    MatProgressBarModule
   ],
 })
 export class MaterialModule {}

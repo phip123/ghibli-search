@@ -20,6 +20,18 @@ export const ROUTES: Routes = [
     component: fromContainers.FilmsSearchComponent,
   },
   {
+    path: 'locations',
+    component: fromContainers.LocationsSearchComponent,
+  },
+  {
+    path: 'people',
+    component: fromContainers.PeopleSearchComponent,
+  },
+  {
+    path: 'species',
+    component: fromContainers.SpeciesSearchComponent,
+  },
+  {
     path: '',
     component: fromComponents.SearchDashboardComponent,
   },

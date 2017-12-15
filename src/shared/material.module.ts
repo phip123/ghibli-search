@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutModule } from '@angular/cdk/layout';
 import {MatListModule} from '@angular/material/list';
+import {MatChipsModule} from '@angular/material/chips';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {MatListModule} from '@angular/material/list';
     MatSidenavModule,
     LayoutModule,
     MatListModule,
+    MatChipsModule
   ],
   exports: [
     MatExpansionModule,
@@ -25,6 +27,7 @@ import {MatListModule} from '@angular/material/list';
     MatSidenavModule,
     LayoutModule,
     MatListModule,
+    MatChipsModule
   ],
 })
 export class MaterialModule {}

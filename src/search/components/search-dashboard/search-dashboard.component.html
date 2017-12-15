@@ -1,0 +1,15 @@
+<div class="container margin-top-20">
+  <h1 class="mat-title">Welcome the the 😺🚌 🔍</h1>
+</div>
+<div class="container">
+  <p class="mat-typography">You can search for</p>
+</div>
+<div class="container" style="padding-bottom: 10px">
+
+  <mat-chip-list class="mat-chip-list-stacked">
+    <mat-chip *ngFor="let criteria of criterias" selected="true" [color]="'accent'" style="text-align: center">
+      {{criteria.name}}
+    </mat-chip>
+  </mat-chip-list>
+
+</div>

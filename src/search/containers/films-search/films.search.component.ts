@@ -7,11 +7,11 @@ import * as fromStore from '../../store';
 
 @Component({
   selector: 'app-search',
-  templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss'],
+  templateUrl: './films.search.component.html',
+  styleUrls: ['./films.search.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchComponent implements OnInit {
+export class FilmsSearchComponent implements OnInit {
 
   films$: Observable<Film[]>;
 

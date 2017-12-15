@@ -16,9 +16,14 @@ import {SharedModule} from '../shared/shared.module';
 
 export const ROUTES: Routes = [
   {
-    path: '',
-    component: fromContainers.SearchComponent,
+    path: 'movies',
+    component: fromContainers.FilmsSearchComponent,
   },
+  {
+    path: '',
+    component: fromComponents.SearchDashboardComponent,
+  },
+
 ];
 
 @NgModule({
@@ -31,7 +36,7 @@ export const ROUTES: Routes = [
     EffectsModule.forFeature(effects)
   ],
   providers: [],
-  declarations: [...fromContainers.containers],
-  exports: [...fromContainers.containers]
+  declarations: [...fromContainers.containers, ...fromComponents.components],
+  exports: [...fromContainers.containers, ...fromComponents.components]
 })
 export class SearchModule {}

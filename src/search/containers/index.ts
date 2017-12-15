@@ -1,5 +1,5 @@
-import { SearchComponent } from './search/search.component';
+import { FilmsSearchComponent } from './films-search/films.search.component';
 
-export const containers: any[] = [SearchComponent];
+export const containers: any[] = [FilmsSearchComponent];
 
-export * from './search/search.component';
+export * from './films-search/films.search.component';

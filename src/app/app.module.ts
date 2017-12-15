@@ -11,6 +11,7 @@ import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {storeFreeze} from 'ngrx-store-freeze';
 import {SharedModule} from '../shared/shared.module';
+import { AboutComponent } from './about/about.component';
 
 
 export const ROUTES: Routes = [
@@ -18,6 +19,10 @@ export const ROUTES: Routes = [
   {
     path: 'search',
     loadChildren: '../search/search.module#SearchModule'
+  },
+  {
+    path: 'about',
+    component: AboutComponent
   }
 ];
 
@@ -38,7 +43,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [],
-  declarations: [AppComponent],
+  declarations: [AppComponent, AboutComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

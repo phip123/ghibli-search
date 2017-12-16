@@ -1,12 +1,15 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { createFeatureSelector } from '@ngrx/store';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromFilms from '../actions/films.action';
+import { getAllFilms } from '../selectors';
 
 export const filmAdapter = createEntityAdapter<Film>();
 
 export interface FilmState extends EntityState<Film> {
   loaded: boolean;
   loading: boolean;
+  filter: string;
+  filteredFilms: Film[];
 }
 
 const defaultFilm: FilmState = {
@@ -14,6 +17,8 @@ const defaultFilm: FilmState = {
   entities: {},
   loaded: false,
   loading: false,
+  filter: '',
+  filteredFilms: [],
 };
 
 export const initialState: FilmState = filmAdapter.getInitialState(defaultFilm);
@@ -33,11 +38,17 @@ export function reducer(
     case fromFilms.LOAD_FILMS_SUCCESS: {
       const films = action.payload;
       state = filmAdapter.addAll(films, state);
+      let filteredFilms = [];
+
+      if (state.filter == '') {
+        filteredFilms = films;
+      }
 
       return {
         ...state,
         loading: false,
         loaded: true,
+        filteredFilms,
       };
     }
 
@@ -48,14 +59,36 @@ export function reducer(
         loading: false,
       };
     }
+
+    case fromFilms.SET_FILM_FILTER: {
+      console.log(`set film filter '${action.payload}'`);
+      let filter;
+
+      if (!action.payload) {
+        filter = '';
+      } else {
+        filter = action.payload;
+      }
+
+      const filteredFilms = selectAll(state).filter(
+        f => f.title.toUpperCase().indexOf(filter.toUpperCase()) !== -1,
+      );
+
+      return {
+        ...state,
+        filter: action.payload,
+        filteredFilms,
+      };
+    }
   }
-  return initialState;
+  return state;
 }
 
 export const getFilmsLoading = (state: FilmState) => state.loading;
 export const getFilmsLoaded = (state: FilmState) => state.loaded;
 export const getFilmsEntities = (state: FilmState) => state.entities;
-
+export const getFilmFilter = (state: FilmState) => state.filter;
+export const getFilterFilms = (state: FilmState) => state.filteredFilms;
 export const {
   selectIds,
   selectEntities,

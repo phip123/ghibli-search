@@ -17,9 +17,10 @@ export class FilmsSearchComponent implements OnInit {
   constructor(private store: Store<SearchState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadFilms());
     this.films$ = this.store.select(fromStore.getFilteredFilms);
   }
+
+  //TODO: when user suche eintippt, und router ändert, nachher wieder filter einstellen
 
   onKey(val: string) {
     console.log(`oneky: '${val}'`);

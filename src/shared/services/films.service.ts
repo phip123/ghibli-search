@@ -5,13 +5,19 @@ import { catchError, tap } from 'rxjs/operators';
 
 @Injectable()
 export class FilmService {
-  private readonly api = 'https://ghibliapi.herokuapp.com/films/';
+  private readonly baseUrl = 'https://ghibliapi.herokuapp.com/films/';
 
   constructor(private http: HttpClient) {}
 
   getAllFilms(): Observable<Film[]> {
-    return this.http.get<Film[]>(this.api).pipe(
+    return this.http.get<Film[]>(this.baseUrl).pipe(
       catchError((error: any) => Observable.throw(error.json())),
+    );
+  }
+
+  getFilm(id: number): Observable<Film> {
+    return this.http.get<Film>(`${this.baseUrl}/${id}`).pipe(
+      catchError(err => Observable.throw(err.json())),
     );
   }
 }

@@ -8,6 +8,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import {MatListModule} from '@angular/material/list';
 import {MatChipsModule} from '@angular/material/chips';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -19,7 +21,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     LayoutModule,
     MatListModule,
     MatChipsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule,
+    MatCardModule
   ],
   exports: [
     MatExpansionModule,
@@ -30,7 +34,9 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     LayoutModule,
     MatListModule,
     MatChipsModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatInputModule,
+    MatCardModule
   ],
 })
 export class MaterialModule {}

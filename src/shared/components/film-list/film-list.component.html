@@ -1,16 +1,16 @@
 <mat-accordion>
   <mat-expansion-panel *ngFor="let film of films" class="mat-body-1">
-    <mat-expansion-panel-header >
+    <mat-expansion-panel-header>
       <mat-panel-title class="mat-typography">
         {{film.title}}
       </mat-panel-title>
     </mat-expansion-panel-header>
     <p class="mat-typography">{{film.description}}</p>
     <mat-action-row>
-      <button mat-icon-button  color="primary">
-
+      <a [routerLink]="['/search/movies/', film.id]" mat-icon-button color="primary">
         <mat-icon>info_outline</mat-icon>
-      </button>
+      </a>
+
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>

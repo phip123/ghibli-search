@@ -24,4 +24,17 @@ export class FilmsEffect {
         );
     }),
   );
+
+  @Effect()
+  loadFilm$ = this.actions$.ofType(filmActions.LOAD_FILM).pipe(
+    map((action: filmActions.LoadFilm) => action.payload),
+    switchMap((id: number) => {
+      return this.filmService
+        .getFilm(id)
+        .pipe(
+          map(film => new filmActions.LoadFilmSuccess(film)),
+          catchError(error => of(new filmActions.LoadFilmFail(error))),
+        );
+    }),
+  );
 }

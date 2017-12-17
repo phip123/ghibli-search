@@ -3,4 +3,3 @@ import {SearchDashboardComponent} from './search-dashboard/search-dashboard.comp
 export const components: any[] = [SearchDashboardComponent];
 
 export * from './search-dashboard/search-dashboard.component';
-

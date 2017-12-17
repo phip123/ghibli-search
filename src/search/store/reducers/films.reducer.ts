@@ -61,7 +61,6 @@ export function reducer(
     }
 
     case fromFilms.SET_FILM_FILTER: {
-      console.log(`set film filter '${action.payload}'`);
       let filter;
 
       if (!action.payload) {
@@ -78,6 +77,15 @@ export function reducer(
         ...state,
         filter: action.payload,
         filteredFilms,
+      };
+    }
+
+    case fromFilms.LOAD_FILM_SUCCESS: {
+      const changes = action.payload;
+      const id = changes.id;
+      state = filmAdapter.addOne({ id, ...changes }, state);
+      return {
+        ...state
       };
     }
   }

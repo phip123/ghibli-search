@@ -6,4 +6,5 @@ interface Film {
   producer: string;
   release_date: number;
   rt_score: number;
+  persons: string[];
 }

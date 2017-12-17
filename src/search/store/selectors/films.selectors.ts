@@ -1,8 +1,8 @@
 import { createSelector } from '@ngrx/store';
 
+import * as fromRoot from '../../../app/store';
 import * as fromFeature from '../reducers';
 import * as fromFilms from '../reducers/films.reducer';
-import { getFilmFilter } from '../reducers/films.reducer';
 
 export const getFilmState = createSelector(
   fromFeature.getSearchState,
@@ -30,4 +30,12 @@ export const getFilteredFilms = createSelector(
   getFilmState,
   fromFilms.getFilterFilms
 
+);
+
+export const getSelectedFilm = createSelector(
+  getFilmsEntities,
+  fromRoot.getRouterState,
+  (entities, router): Film => {
+    return router.state && entities[router.state.params.filmId];
+  }
 );

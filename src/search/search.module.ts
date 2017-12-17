@@ -11,10 +11,28 @@ import {reducers, effects} from './store';
 import * as fromContainers from './containers';
 
 import * as fromComponents from './components';
+
+import * as fromGuards from './guards';
+
 import {SharedModule} from '../shared/shared.module';
 
 
 export const ROUTES: Routes = [
+  {
+    path: 'movies',
+    children: [
+      {
+        path: ':filmId',
+        canActivate: [fromGuards.FilmExistsGuard],
+        component: fromContainers.FilmItemComponent
+      },
+      {
+        path: '',
+        canActivate: [fromGuards.FilmsGuard],
+        component: fromContainers.FilmsSearchComponent,
+      }
+    ]
+  },
   {
     path: 'movies',
     component: fromContainers.FilmsSearchComponent,
@@ -47,7 +65,7 @@ export const ROUTES: Routes = [
     StoreModule.forFeature('search', reducers),
     EffectsModule.forFeature(effects)
   ],
-  providers: [],
+  providers: [...fromGuards.guards],
   declarations: [...fromContainers.containers, ...fromComponents.components],
   exports: [...fromContainers.containers, ...fromComponents.components]
 })

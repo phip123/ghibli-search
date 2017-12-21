@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import { filter, map } from 'rxjs/operators';
 import * as urls from '../../shared/util/url.constants';
 
-@Injectable
+@Injectable()
 export class PersonsService {
 
   constructor(private http: HttpClient) {}

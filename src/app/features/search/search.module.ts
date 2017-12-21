@@ -14,7 +14,7 @@ import * as fromComponents from './components';
 
 import * as fromGuards from './guards';
 
-import {SharedModule} from '../shared/shared.module';
+import {SharedModule} from '../app/shared/shared.module';
 
 
 export const ROUTES: Routes = [

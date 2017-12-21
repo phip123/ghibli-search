@@ -1,5 +1,5 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
-import { Person } from '../../../shared/models/person.model';
+import { Person } from '../../../app/core/models/person.model';
 import * as fromPersons from '../actions/people.actions';
 import { filmAdapter } from './films.reducer';
 

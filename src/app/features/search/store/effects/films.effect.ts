@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 
-import * as fromServices from '../../../shared/services';
+import * as fromServices from '../../../app/core/services';
 import * as filmActions from '../actions/films.action';
 import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';

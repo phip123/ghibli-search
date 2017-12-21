@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Person } from '../../../shared/models/person.model';
+import { Person } from '../../../app/core/models/person.model';
 
 export const LOAD_PERSONS = '[Persons] Load Persons';
 export const LOAD_PERSONS_SUCCESS = '[Persons] Load Persons Success';

@@ -4,7 +4,7 @@
 @include mat-core();
 
 // import our custom theme
-@import 'ghibli-theme.scss';
+@import 'themes/ghibli-theme';
 
 // specify theme class eg: <body class="my-theme"> ... </body>
 .candy-theme {

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Person } from '../models/person.model';
 import { Observable } from 'rxjs/Observable';
 import { filter, map } from 'rxjs/operators';
-import * as urls from '../../shared/util/url.constants';
+import * as urls from '../util/url.constants';
 
 @Injectable()
 export class PersonsService {

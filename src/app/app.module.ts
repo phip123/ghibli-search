@@ -9,19 +9,19 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {storeFreeze} from 'ngrx-store-freeze';
-import {SharedModule} from '../shared/shared.module';
 
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
 import { reducers, effects, CustomSerializer } from './store';
 
 import {RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
+import {SharedModule} from './shared/shared.module';
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'search'},
   {
     path: 'search',
-    loadChildren: '../search/search.module#SearchModule'
+    loadChildren: './features/search/search.module#SearchModule'
   },
   {
     path: 'about',

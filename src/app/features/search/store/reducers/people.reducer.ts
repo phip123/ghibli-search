@@ -81,6 +81,15 @@ export function reducer(state = initialState,
         filteredPeople
       };
     }
+
+    case fromPersons.LOAD_PERSON_SUCCESS: {
+      const changes = action.payload;
+      const id = changes.id;
+      state = personAdapter.addOne({id, ...changes}, state);
+      return {
+        ...state
+      };
+    }
   }
 
   return state;

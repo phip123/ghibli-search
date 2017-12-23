@@ -1,6 +1,8 @@
-import { createSelector } from '@ngrx/store';
+import {createSelector} from '@ngrx/store';
 import * as fromFeature from '../reducers';
 import * as fromPeople from '../reducers/people.reducer';
+import * as fromRoot from '@app/root/store';
+import {Person} from '@app/core/models/person.model';
 
 export const getPeopleState = createSelector(
   fromFeature.getSearchState,
@@ -26,3 +28,13 @@ export const getFilteredPeople = createSelector(
   getPeopleState,
   fromPeople.filteredPeople,
 );
+
+export const getSelectedPerson = createSelector(
+  getPeopleEntities,
+  fromRoot.getRouterState,
+  (entities, router): Person => {
+    return router.state && entities[router.state.params.personId];
+  }
+);
+
+

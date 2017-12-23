@@ -1,12 +1,12 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
-import { StoreModule } from '@ngrx/store';
-import { EffectsModule } from '@ngrx/effects';
+import {StoreModule} from '@ngrx/store';
+import {EffectsModule} from '@ngrx/effects';
 
-import {reducers, effects} from './store';
+import {effects, reducers} from './store';
 
 import * as fromContainers from './containers';
 
@@ -14,7 +14,6 @@ import * as fromComponents from './components';
 
 import * as fromGuards from './guards';
 import {SharedModule} from '@app/shared/shared.module';
-
 
 
 export const ROUTES: Routes = [
@@ -34,16 +33,22 @@ export const ROUTES: Routes = [
     ]
   },
   {
-    path: 'movies',
-    component: fromContainers.FilmsSearchComponent,
-  },
-  {
     path: 'locations',
     component: fromContainers.LocationsSearchComponent,
   },
   {
     path: 'people',
-    component: fromContainers.PeopleSearchComponent,
+    children: [
+      {
+        path: ':personId',
+        canActivate: [fromGuards.PersonExistsGuard],
+        component: fromContainers.PersonItemComponent
+      },
+      {
+        path: '',
+        component: fromContainers.PeopleSearchComponent,
+      }
+    ]
   },
   {
     path: 'species',

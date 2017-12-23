@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Person} from '../models/person.model';
 import {Observable} from 'rxjs/Observable';
-import {catchError, filter, map} from 'rxjs/operators';
+import {catchError, map} from 'rxjs/operators';
 import * as urls from '../util/url.constants';
 
 @Injectable()
@@ -29,5 +29,11 @@ export class PersonsService {
   private isInMovie(p: Person, id: string): boolean {
     const url = `${urls.filmUrl}/${id}`;
     return p.films.some(u => u === url);
+  }
+
+  public getPerson(id: string): Observable<Person> {
+    return this.http.get<Person>(`${urls.peopleUrl}/${id}`).pipe(
+      catchError((error: any) => Observable.throw(error.json())),
+    );
   }
 }

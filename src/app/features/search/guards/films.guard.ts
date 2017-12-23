@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { CanActivate } from '@angular/router';
+import {Injectable} from '@angular/core';
+import {CanActivate} from '@angular/router';
 import * as fromStore from '../store';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import { tap, filter, take, switchMap, catchError } from 'rxjs/operators';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
+import {catchError, filter, switchMap, take, tap} from 'rxjs/operators';
 
-export const guards: any[] = [];
 
 @Injectable()
 export class FilmsGuard implements CanActivate {

@@ -1,0 +1,20 @@
+<div class="container" *ngIf="person">
+  <mat-card class="mat-typography detail-card">
+    <mat-card-header style="display: inline !important;">
+      <mat-card-title-group>
+        <mat-icon>face</mat-icon>
+
+        <mat-card-title>{{person.name}}</mat-card-title>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+
+      <p class="mat-typography">Age: {{person.age}}</p>
+      <p class="mat-typography">Eye Color: {{person.eye_color}}</p>
+      <p class="mat-typography">Gender: {{person.gender}}</p>
+      <p class="mat-typography">Hair Color: {{person.hair_color}}</p>
+    </mat-card-content>
+
+  </mat-card>
+
+</div>

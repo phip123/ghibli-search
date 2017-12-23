@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import * as fromServices from '@app/core/services';
 import * as peopleActions from '../actions/people.actions';
 import {Actions, Effect} from '@ngrx/effects';
-import {catchError, map, switchMap, tap} from 'rxjs/operators';
+import {catchError, map, switchMap} from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
 
 @Injectable()
@@ -38,5 +38,19 @@ export class PersonsEffect {
         );
     })
   );
+
+  @Effect()
+  loadPerson$ = this.actions$.ofType(peopleActions.LOAD_PERSON).pipe(
+    map((action: peopleActions.LoadPerson) => action.payload),
+    switchMap((id: string) => {
+      return this.personsService
+        .getPerson(id)
+        .pipe(
+          map(person => new peopleActions.LoadPersonSuccess(person)),
+          catchError(error => of(new peopleActions.LoadPersonFail(error))),
+        );
+    }),
+  );
+
 
 }

@@ -12,6 +12,34 @@ export const LOAD_PERSONS_FOR_FILM_FAIL =
   '[Persons] Load Persons for Film Fail';
 export const SET_PEOPLE_FILTER = '[Persons] Set Filter';
 
+export const LOAD_PERSON = '[Persons] Load Person';
+export const LOAD_PERSON_SUCCESS = '[Persons] Load Person Success';
+export const LOAD_PERSON_FAIL = '[Persons] Load Person Fail';
+
+
+export class LoadPerson implements Action {
+  readonly type = LOAD_PERSON;
+
+  constructor(public payload: string) {
+  }
+}
+
+
+export class LoadPersonSuccess implements Action {
+  readonly type = LOAD_PERSON_SUCCESS;
+
+  constructor(public payload: Person) {
+  }
+}
+
+
+export class LoadPersonFail implements Action {
+  readonly type = LOAD_PERSON_FAIL;
+
+  constructor(public payload: any) {
+  }
+}
+
 export class LoadPersons implements Action {
   readonly type = LOAD_PERSONS;
 
@@ -66,4 +94,7 @@ export type PersonsActions =
   | SetPeopleFilter
   | LoadPersons
   | LoadPersonsFail
-  | LoadPersonsSuccess;
+  | LoadPersonsSuccess
+  | LoadPerson
+  | LoadPersonFail
+  | LoadPersonSuccess;

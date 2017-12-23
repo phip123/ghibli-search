@@ -6,6 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
 import { tap, map, filter, take, switchMap } from 'rxjs/operators';
 import {Dictionary} from '@ngrx/entity/src/models';
+import {Film} from '@app/core/models/film.model';
 
 
 @Injectable()

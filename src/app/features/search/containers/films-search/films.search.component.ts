@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Observable';
 
 import * as fromStore from '../../store';
+import {Film} from '@app/core/models/film.model';
 
 @Component({
   selector: 'app-search',

@@ -21,7 +21,7 @@
       "styles": [
         "../node_modules/font-awesome/css/font-awesome.min.css",
         "styles.scss",
-        "ghibli-theme.scss"
+        "themes/ghibli-theme.scss"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

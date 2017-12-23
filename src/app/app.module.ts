@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 
 import {RouterModule, Routes} from '@angular/router';
-import {environment} from '../environments/environment';
+import {environment} from '@env/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
@@ -16,6 +16,7 @@ import { reducers, effects, CustomSerializer } from './store';
 
 import {RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {SharedModule} from './shared/shared.module';
+import {CoreModule} from '@app/core';
 
 export const ROUTES: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'search'},
@@ -39,6 +40,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     BrowserModule,
     BrowserAnimationsModule,
     SharedModule,
+    CoreModule,
     RouterModule.forRoot(ROUTES),
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot(effects),

@@ -2,6 +2,7 @@ import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromFilms from '../actions/films.action';
 import { getAllFilms } from '../selectors';
+import {Film} from '@app/core/models/film.model';
 
 export const filmAdapter = createEntityAdapter<Film>();
 

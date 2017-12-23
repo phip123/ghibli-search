@@ -4,6 +4,7 @@ import * as fromStore from '../../store';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import {tap} from 'rxjs/operators';
+import {Film} from '@app/core/models/film.model';
 
 
 @Component({

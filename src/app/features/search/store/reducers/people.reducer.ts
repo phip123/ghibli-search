@@ -1,7 +1,6 @@
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
-import { Person } from '../../../app/core/models/person.model';
 import * as fromPersons from '../actions/people.actions';
-import { filmAdapter } from './films.reducer';
+import { Person } from '@app/core/models/person.model';
 
 export const personAdapter = createEntityAdapter<Person>();
 

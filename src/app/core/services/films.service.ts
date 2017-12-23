@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, tap } from 'rxjs/operators';
+import {Film} from '@app/core/models/film.model';
 
 @Injectable()
 export class FilmService {

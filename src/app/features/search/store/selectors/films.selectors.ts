@@ -1,8 +1,9 @@
 import { createSelector } from '@ngrx/store';
 
-import * as fromRoot from '../../../app/store';
+import * as fromRoot from '@app/store';
 import * as fromFeature from '../reducers';
 import * as fromFilms from '../reducers/films.reducer';
+import {Film} from '@app/core/models/film.model';
 
 export const getFilmState = createSelector(
   fromFeature.getSearchState,

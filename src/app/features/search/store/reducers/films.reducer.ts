@@ -38,15 +38,15 @@ export function reducer(
 
     case fromFilms.LOAD_FILMS_SUCCESS: {
       const films = action.payload;
-      state = filmAdapter.addAll(films, state);
+      const newState = filmAdapter.addAll(films, state);
       let filteredFilms = [];
 
-      if (state.filter == '') {
+      if (newState.filter === '') {
         filteredFilms = films;
       }
 
       return {
-        ...state,
+        ...newState,
         loading: false,
         loaded: true,
         filteredFilms,

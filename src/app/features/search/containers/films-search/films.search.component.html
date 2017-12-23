@@ -2,6 +2,6 @@
   <mat-form-field class="full-width">
     <input matInput placeholder="Search for movies" #filter type="text" (keyup)="onKey(filter.value)">
   </mat-form-field>
-  <app-film-list [films]="films$ | async"></app-film-list>
+  <app-film-list style="width: 90%" [films]="films$ | async"></app-film-list>
 
 </div>

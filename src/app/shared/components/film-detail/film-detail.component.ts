@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Film} from '@app/core/models/film.model';
+import {Person} from '@app/core/models/person.model';
 
 @Component({
   selector: 'app-film-detail',
@@ -11,7 +12,11 @@ export class FilmDetailComponent implements OnInit {
   @Input('film')
   film: Film;
 
-  constructor() { }
+  @Input('people')
+  people: Person[];
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

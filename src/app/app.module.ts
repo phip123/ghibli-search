@@ -48,7 +48,7 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
-  declarations: [...fromContainers.containers, ...fromComponents.components],
+  declarations: [...fromContainers.containers, ...fromComponents.components,],
   bootstrap: [fromContainers.AppComponent],
 })
 export class AppModule {}

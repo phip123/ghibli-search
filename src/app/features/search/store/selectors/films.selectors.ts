@@ -30,7 +30,6 @@ export const getFilmsLoading = createSelector(
 export const getFilteredFilms = createSelector(
   getFilmState,
   fromFilms.getFilterFilms
-
 );
 
 export const getSelectedFilm = createSelector(

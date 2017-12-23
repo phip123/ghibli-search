@@ -21,3 +21,8 @@ export const getSelectedPeople = createSelector(
   getPeopleState,
   fromPeople.selectedPeople,
 );
+
+export const getFilteredPeople = createSelector(
+  getPeopleState,
+  fromPeople.filteredPeople,
+);

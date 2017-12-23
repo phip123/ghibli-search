@@ -1,7 +1,9 @@
 <div class="container">
   <mat-card class="mat-typography card">
-    <mat-card-header>
+    <mat-card-header style="display: inline !important;">
       <mat-card-title-group>
+        <mat-icon>movie</mat-icon>
+
         <mat-card-title>{{film.title}}</mat-card-title>
         <mat-card-subtitle>{{film.director}}</mat-card-subtitle>
       </mat-card-title-group>
@@ -9,9 +11,25 @@
     <mat-card-content>
       <mat-card-subtitle>Storyline</mat-card-subtitle>
       <p>{{film.description}}</p>
-      <h3>Rotten Tomato Score</h3>
-      <p> {{film.rt_score}}</p>
+      <p> Rotten Tomato Score: {{film.rt_score}}</p>
       <p>Release date: {{film.release_date}}</p>
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              People
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item *ngFor="let person of people">
+              <mat-icon mat-list-icon>face</mat-icon>
+              <p mat-line>{{person.name}}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-card-content>
+
   </mat-card>
+
 </div>

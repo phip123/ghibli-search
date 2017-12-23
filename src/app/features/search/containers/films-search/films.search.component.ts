@@ -24,7 +24,6 @@ export class FilmsSearchComponent implements OnInit {
   //TODO: when user suche eintippt, und router ändert, nachher wieder filter einstellen
 
   onKey(val: string) {
-    console.log(`oneky: '${val}'`);
     this.store.dispatch(new fromStore.SetFilmFilter(val));
   }
 }

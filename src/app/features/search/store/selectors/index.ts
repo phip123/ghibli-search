@@ -1,1 +1,2 @@
-export * from'./films.selectors';
+export * from './films.selectors';
+export * from './people.selectors';

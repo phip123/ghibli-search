@@ -10,9 +10,9 @@ import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {storeFreeze} from 'ngrx-store-freeze';
 
-import * as fromContainers from './containers';
-import * as fromComponents from './components';
-import { reducers, effects, CustomSerializer } from './store';
+import * as fromContainers from './root/containers';
+import * as fromComponents from './root/components';
+import { reducers, effects, CustomSerializer } from './root/store';
 
 import {RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {SharedModule} from './shared/shared.module';

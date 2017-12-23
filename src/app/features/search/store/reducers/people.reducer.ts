@@ -8,7 +8,7 @@ export interface PersonState extends EntityState<Person> {
   loaded: boolean;
   loading: boolean;
   filter: string;
-  filteredPersons: Person[];
+  selectedPeople: Person[];
 }
 
 const defaultPerson: PersonState = {
@@ -17,7 +17,7 @@ const defaultPerson: PersonState = {
   loaded: false,
   loading: false,
   filter: '',
-  filteredPersons: [],
+  selectedPeople: [],
 };
 
 export const initialState: PersonState = personAdapter.getInitialState(
@@ -31,12 +31,22 @@ export function reducer(
   switch (action.type) {
     case fromPersons.LOAD_PERSONS_FOR_FILM_SUCCESS: {
       state = personAdapter.addAll(action.payload, state);
-
+      const selectedPeople = action.payload;
       return {
         ...state,
+        selectedPeople,
       };
     }
   }
 
   return state;
 }
+
+export const selectedPeople = (state: PersonState) => state.selectedPeople;
+
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
+} = personAdapter.getSelectors();

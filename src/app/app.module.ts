@@ -10,13 +10,13 @@ import {MetaReducer, StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
 import {storeFreeze} from 'ngrx-store-freeze';
 
-import * as fromContainers from './root/containers';
 import * as fromComponents from './root/components';
 import {CustomSerializer, effects, reducers} from './root/store';
 
 import {RouterStateSerializer, StoreRouterConnectingModule} from '@ngrx/router-store';
 import {SharedModule} from './shared/shared.module';
 import {CoreModule} from '@app/core';
+import {AppComponent} from '@app/root/app.component';
 
 export const ROUTES: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'search'},
@@ -48,8 +48,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
     !environment.production ? StoreDevtoolsModule.instrument() : [],
   ],
   providers: [{provide: RouterStateSerializer, useClass: CustomSerializer}],
-  declarations: [...fromContainers.containers, ...fromComponents.components],
-  bootstrap: [fromContainers.AppComponent],
+  declarations: [AppComponent, ...fromComponents.components],
+  bootstrap: [AppComponent],
 })
 export class AppModule {
 }

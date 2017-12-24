@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
 import * as fromStore from '../../store';
 import {Store} from '@ngrx/store';
@@ -11,6 +11,7 @@ import {Person} from '@app/core/models/person.model';
   selector: 'app-film-item',
   templateUrl: './film-item.component.html',
   styleUrls: ['./film-item.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilmItemComponent implements OnInit {
   film$: Observable<Film>;

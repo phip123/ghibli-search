@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import * as fromStore from '@app/features/search/store';
 import {SearchState} from '@app/features/search/store/reducers';
 import {Observable} from 'rxjs/Observable';
@@ -8,7 +8,8 @@ import {Person} from '@app/core/models/person.model';
 @Component({
   selector: 'app-people-search',
   templateUrl: './people-search.component.html',
-  styleUrls: ['./people-search.component.scss']
+  styleUrls: ['./people-search.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PeopleSearchComponent implements OnInit {
 

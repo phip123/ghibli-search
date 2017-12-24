@@ -16,6 +16,9 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <div *ngIf="loading" class="spinner-container">
+      <mat-spinner class="spinner" color="accent"></mat-spinner>
+    </div>
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

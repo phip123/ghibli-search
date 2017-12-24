@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-search-dashboard',
   templateUrl: './search-dashboard.component.html',
-  styleUrls: ['./search-dashboard.component.scss']
+  styleUrls: ['./search-dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchDashboardComponent implements OnInit {
 

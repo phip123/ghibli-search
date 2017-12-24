@@ -13,7 +13,26 @@
       <p class="mat-typography">Eye Color: {{person.eye_color}}</p>
       <p class="mat-typography">Gender: {{person.gender}}</p>
       <p class="mat-typography">Hair Color: {{person.hair_color}}</p>
+
+      <mat-accordion>
+        <mat-expansion-panel [hideToggle]="species.name.length == 0">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Species
+            </mat-panel-title>
+            <mat-panel-description *ngIf="species.name.length == 0">
+              No species available
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <div *ngIf="species.name.length != 0">
+            <p class="mat-typography">Name: {{species.name}}</p>
+            <p class="mat-typography">Classification: {{species.classification}}</p>
+            <p class="mat-typography"></p>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-card-content>
+
 
   </mat-card>
 

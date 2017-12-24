@@ -27,7 +27,7 @@ export const initialState: PersonState = personAdapter.getInitialState(
 );
 
 export function reducer(state = initialState,
-                        action: fromPersons.PersonsActions,): PersonState {
+                        action: fromPersons.PersonsActions): PersonState {
   switch (action.type) {
     case fromPersons.LOAD_PERSONS_FOR_FILM_SUCCESS: {
       state = personAdapter.addAll(action.payload, state);

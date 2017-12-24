@@ -18,7 +18,6 @@ export class PeopleSearchComponent implements OnInit {
   constructor(private store: Store<SearchState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new fromStore.LoadPersons());
     this.people$ = this.store.select(fromStore.getFilteredPeople);
   }
 

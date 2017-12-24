@@ -15,11 +15,14 @@
         <p> Rotten Tomato Score: {{film.rt_score}}</p>
         <p>Release date: {{film.release_date}}</p>
         <mat-accordion>
-          <mat-expansion-panel>
+          <mat-expansion-panel [hideToggle]="!people.length">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 People
               </mat-panel-title>
+              <mat-panel-description *ngIf="!people.length">
+                No persons available
+              </mat-panel-description>
             </mat-expansion-panel-header>
             <mat-list>
               <mat-list-item *ngFor="let person of people">

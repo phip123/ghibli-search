@@ -46,6 +46,7 @@ export const ROUTES: Routes = [
       },
       {
         path: '',
+        canActivate: [fromGuards.PersonsGuard],
         component: fromContainers.PeopleSearchComponent,
       }
     ]

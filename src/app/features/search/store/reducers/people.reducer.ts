@@ -97,6 +97,7 @@ export function reducer(state = initialState,
 
 export const selectedPeople = (state: PersonState) => state.selectedPeople;
 export const filteredPeople = (state: PersonState) => state.filteredPeople;
+export const getPeopleLoaded = (state: PersonState) => state.loaded;
 export const {
   selectIds,
   selectEntities,

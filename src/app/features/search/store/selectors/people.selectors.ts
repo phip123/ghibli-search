@@ -37,4 +37,9 @@ export const getSelectedPerson = createSelector(
   }
 );
 
+export const getPeopleLoaded = createSelector(
+  getPeopleState,
+  fromPeople.getPeopleLoaded,
+);
+
 

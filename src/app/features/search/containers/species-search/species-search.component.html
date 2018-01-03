@@ -1,5 +1,7 @@
-<div class="pad">
-  <p style="text-align: center;">Work in progress</p>
-  <mat-icon style>warning</mat-icon>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<div class="container">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Search for species" #filter type="text" (keyup)="onKey(filter.value)">
+  </mat-form-field>
+  <app-species-list style="width: 90%" [species]="species$ | async"></app-species-list>
 </div>
+

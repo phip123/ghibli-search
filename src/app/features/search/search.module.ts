@@ -1,5 +1,4 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -14,60 +13,15 @@ import * as fromComponents from './components';
 
 import * as fromGuards from './guards';
 import {SharedModule} from '@app/shared/shared.module';
+import {SearchRoutingModule} from './search.routing.module';
 
-
-export const ROUTES: Routes = [
-  {
-    path: 'movies',
-    children: [
-      {
-        path: ':filmId',
-        canActivate: [fromGuards.FilmExistsGuard],
-        component: fromContainers.FilmItemComponent
-      },
-      {
-        path: '',
-        canActivate: [fromGuards.FilmsGuard],
-        component: fromContainers.FilmsSearchComponent,
-      }
-    ]
-  },
-  {
-    path: 'locations',
-    component: fromContainers.LocationsSearchComponent,
-  },
-  {
-    path: 'people',
-    children: [
-      {
-        path: ':personId',
-        canActivate: [fromGuards.PersonExistsGuard],
-        component: fromContainers.PersonItemComponent
-      },
-      {
-        path: '',
-        canActivate: [fromGuards.PersonsGuard],
-        component: fromContainers.PeopleSearchComponent,
-      }
-    ]
-  },
-  {
-    path: 'species',
-    component: fromContainers.SpeciesSearchComponent,
-  },
-  {
-    path: '',
-    component: fromComponents.SearchDashboardComponent,
-  },
-
-];
 
 @NgModule({
   imports: [
     ReactiveFormsModule,
     HttpClientModule,
+    SearchRoutingModule,
     SharedModule,
-    RouterModule.forChild(ROUTES),
     StoreModule.forFeature('search', reducers),
     EffectsModule.forFeature(effects)
   ],

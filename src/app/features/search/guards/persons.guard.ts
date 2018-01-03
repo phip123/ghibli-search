@@ -3,9 +3,7 @@ import {CanActivate} from '@angular/router';
 import * as fromStore from '../store';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
-import {of} from 'rxjs/observable/of';
-import {catchError, filter, switchMap, take, tap} from 'rxjs/operators';
-
+import * as guardUtils from './guard.util';
 
 @Injectable()
 export class PersonsGuard implements CanActivate {
@@ -13,21 +11,10 @@ export class PersonsGuard implements CanActivate {
   }
 
   canActivate(): Observable<boolean> {
-    return this.checkStore().pipe(
-      switchMap(() => of(true)),
-      catchError(() => of(false)),
-    );
-  }
-
-  private checkStore(): Observable<boolean> {
-    return this.store.select(fromStore.getPeopleLoaded).pipe(
-      tap(loaded => {
-        if (!loaded) {
-          this.store.dispatch(new fromStore.LoadPersons());
-        }
-      }),
-      filter(loaded => loaded),
-      take(1),
+    return guardUtils.canActivate(
+      this.store,
+      fromStore.getPeopleLoaded,
+      new fromStore.LoadPersons(),
     );
   }
 }

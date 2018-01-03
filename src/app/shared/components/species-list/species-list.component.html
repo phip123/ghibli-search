@@ -1,0 +1,19 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let sp of species" class="mat-body-1">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-typography">
+        {{species.name}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p class="mat-typography">Classification: {{sp.classification}}</p>
+    <p class="mat-typography">Eye Colors: {{sp.eye_colors}}</p>
+    <p class="mat-typography">Hai Colors: {{sp.hair_colors}}</p>
+    <mat-action-row>
+      <a [routerLink]="['/search/species/', species.id]" mat-icon-button color="primary">
+        <mat-icon>info_outline</mat-icon>
+      </a>
+
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+

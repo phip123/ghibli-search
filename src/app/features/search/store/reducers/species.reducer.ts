@@ -49,6 +49,26 @@ export function reducer(state = initialState,
         speciesForPerson,
       };
     }
+
+    case fromSpecies.SET_SPECIES_FILTER: {
+      let filter;
+
+      if (!action.payload) {
+        filter = '';
+      } else {
+        filter = action.payload;
+      }
+
+      const filteredSpecies = selectAll(state).filter(
+        p => p.name.toUpperCase().indexOf(filter.toUpperCase()) !== -1,
+      );
+
+      return {
+        ...state,
+        filter: action.payload,
+        filteredSpecies
+      };
+    }
   }
 
   return state;

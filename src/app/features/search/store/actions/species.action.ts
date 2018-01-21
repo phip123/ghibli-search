@@ -9,6 +9,10 @@ export const LOAD_SPECIES = '[Species] Load Species';
 export const LOAD_SPECIES_SUCCESS = '[Species] Load Species Success';
 export const LOAD_SPECIES_FAIL = '[Species] Load Species Fail';
 
+export const LOAD_SPECIES_DETAIL = '[Species] Load Species Detail';
+export const LOAD_SPECIES_DETAIL_SUCCESS = '[Species] Load Species Detail Success';
+export const LOAD_SPECIES_DETAIL_FAIL = '[Species] Load Species Detail Fail';
+
 export const SET_SPECIES_FILTER = '[Species] Set Species Filter';
 
 export class LoadSpecies implements Action {
@@ -22,7 +26,7 @@ export class LoadSpeciesSuccess implements Action {
   }
 }
 
-export class LoadSpeciesAction implements Action {
+export class LoadSpeciesFail implements Action {
   readonly type = LOAD_SPECIES_FAIL;
 
   constructor(public payload: any) {
@@ -57,8 +61,38 @@ export class LoadSpeciesForPersonFail implements Action {
   }
 }
 
+export class LoadSpeciesDetails implements Action {
+  readonly type = LOAD_SPECIES_DETAIL;
+
+  constructor(public payload: string) {
+  }
+
+}
+
+export class LoadSpeciesDetailsSuccess implements Action {
+  readonly type = LOAD_SPECIES_DETAIL_SUCCESS;
+
+  constructor(public payload: Species) {
+  }
+
+}
+
+export class LoadSpeciesDetailsFail implements Action {
+  readonly type = LOAD_SPECIES_DETAIL_FAIL;
+
+  constructor(public payload: any) {
+  }
+
+}
+
 export type SpeciesAction =
   | LoadSpeciesForPerson
   | LoadSpeciesForPersonSuccess
   | LoadSpeciesForPersonFail
-  | SetSpeciesFilter;
+  | SetSpeciesFilter
+  | LoadSpecies
+  | LoadSpeciesSuccess
+  | LoadSpeciesFail
+  | LoadSpeciesDetails
+  | LoadSpeciesDetailsSuccess
+  | LoadSpeciesDetailsFail;

@@ -69,6 +69,30 @@ export function reducer(state = initialState,
         filteredSpecies
       };
     }
+
+    case fromSpecies.LOAD_SPECIES: {
+      return {
+        ...state,
+        loading: true
+      };
+    }
+
+    case fromSpecies.LOAD_SPECIES_SUCCESS: {
+      const species = action.payload;
+      const newState = speciesAdapter.addAll(species, state);
+      let filteredSpecies = [];
+
+      if (newState.filter == '') {
+        filteredSpecies = species;
+      }
+
+      return {
+        ...newState,
+        loaded: true,
+        loading: false,
+        filteredSpecies
+      };
+    }
   }
 
   return state;

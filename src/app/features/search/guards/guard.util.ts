@@ -5,7 +5,7 @@ import {Action, Selector, Store} from '@ngrx/store';
 import {SearchState} from '../store';
 
 export function canActivate(store: Store<SearchState>, sel: Selector<SearchState, boolean>, loadAction: Action): Observable<boolean> {
-  return this.checkStore(store, sel, loadAction).pipe(
+  return checkStore(store, sel, loadAction).pipe(
     switchMap(() => of(true)),
     catchError(() => of(false)),
   );
@@ -15,7 +15,7 @@ export function checkStore(store: Store<SearchState>, sel: Selector<SearchState,
   return store.select(sel).pipe(
     tap(loaded => {
       if (!loaded) {
-        this.store.dispatch(loadAction);
+        store.dispatch(loadAction);
       }
     }),
     filter((loaded: boolean) => loaded),

@@ -43,7 +43,17 @@ export const ROUTES: Routes = [
   },
   {
     path: 'species',
-    component: fromContainers.SpeciesSearchComponent,
+    children: [
+      {
+        path: ':speciesId',
+        component: fromContainers.SpeciesItemComponent
+      },
+      {
+        path: '',
+        canActivate: [fromGuards.SpeciesGuard],
+        component: fromContainers.SpeciesSearchComponent
+      }
+    ]
   },
   {
     path: '',

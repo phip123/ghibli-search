@@ -29,4 +29,9 @@ export class SpeciesService {
   }
 
 
+  getSpecies(id: string): Observable<Species> {
+    return this.http.get<Species>(`${urls.speciesUrl}/${id}`).pipe(
+      catchError(err => Observable.throw(err.json())),
+    );
+  }
 }

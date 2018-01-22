@@ -46,10 +46,15 @@ export class SpeciesEffect {
   );
 
   @Effect()
-  loadOneSpecies = this.actions$.ofType(speciesActions.LOAD_SPECIES_DETAIL).pipe(
+  loadOneSpecies$ = this.actions$.ofType(speciesActions.LOAD_SPECIES_DETAIL).pipe(
     map((action: speciesActions.LoadSpeciesDetails) => action.payload),
     switchMap((id: string) => {
-      return null;
+      return this.speciesService
+        .getSpecies(id)
+        .pipe(
+          map(species => new speciesActions.LoadSpeciesDetailsSuccess(species)),
+          catchError(error => of(new speciesActions.LoadSpeciesFail(error)))
+        );
     })
   );
 }

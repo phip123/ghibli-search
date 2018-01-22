@@ -46,6 +46,7 @@ export const ROUTES: Routes = [
     children: [
       {
         path: ':speciesId',
+        canActivate: [fromGuards.SpeciesExistsGuard],
         component: fromContainers.SpeciesItemComponent
       },
       {

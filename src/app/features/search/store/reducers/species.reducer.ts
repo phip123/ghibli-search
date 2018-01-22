@@ -1,6 +1,7 @@
 import * as fromSpecies from '../actions/species.action';
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {Species} from '@app/core/models/species.model';
+import * as fromPersons from '@app/features/search/store/actions/people.actions';
 
 export const speciesAdapter = createEntityAdapter<Species>();
 
@@ -91,6 +92,15 @@ export function reducer(state = initialState,
         loaded: true,
         loading: false,
         filteredSpecies
+      };
+    }
+
+    case fromSpecies.LOAD_SPECIES_DETAIL_SUCCESS: {
+      const changes = action.payload;
+      const id = changes.id;
+      state = speciesAdapter.addOne({id, ...changes}, state);
+      return {
+        ...state
       };
     }
   }

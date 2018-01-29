@@ -28,6 +28,19 @@ export class PersonsEffect {
   );
 
   @Effect()
+  loadPeopleForSpecies$ = this.actions$.ofType(peopleActions.LOAD_PEOPLE_FOR_SPECIES).pipe(
+    map((action: peopleActions.LoadPeopleForSpecies) => action.payload),
+    switchMap((id: string) => {
+      return this.personsService.findPeopleForSpecies(id)
+        .pipe(
+          map(people => new peopleActions.LoadPeopleForSpeciesSuccess(people)),
+          catchError(error => of(new peopleActions.LoadPeopleForSpeciesFail(error)))
+        );
+    }),
+  );
+
+
+  @Effect()
   loadPeople$ = this.actions$.ofType(peopleActions.LOAD_PERSONS).pipe(
     switchMap(() => {
       return this.personsService

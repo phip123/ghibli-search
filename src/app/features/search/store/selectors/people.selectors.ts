@@ -42,4 +42,11 @@ export const getPeopleLoaded = createSelector(
   fromPeople.getPeopleLoaded,
 );
 
+export const getPeopleForSpecies = createSelector(
+  getPeopleState,
+  fromPeople.getPeopleForSpecies,
+);
+
+
+
 

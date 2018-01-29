@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core';
 import {Species} from '@app/core/models/species.model';
+import {Person} from '@app/core/models/person.model';
 
 @Component({
   selector: 'app-species-detail',
@@ -11,6 +12,9 @@ export class SpeciesDetailComponent implements OnInit {
 
   @Input('species')
   species: Species;
+
+  @Input('people')
+  people: Person[];
 
   constructor() {
   }

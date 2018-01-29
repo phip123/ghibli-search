@@ -20,20 +20,36 @@ export class PersonsService {
   public findPeopleForFilm(id: string): Observable<Person[]> {
     return this.http.get<Person[]>(urls.peopleUrl).pipe(
       map((people: Person[]) => {
-        return people.filter((p: Person) => this.isInMovie(p, id));
+        return people.filter((p: Person) => isInMovie(p, id));
       }),
       catchError((error: any) => Observable.throw(error.json())),
     );
   }
 
-  private isInMovie(p: Person, id: string): boolean {
-    const url = `${urls.filmUrl}/${id}`;
-    return p.films.some(u => u === url);
-  }
 
   public getPerson(id: string): Observable<Person> {
     return this.http.get<Person>(`${urls.peopleUrl}/${id}`).pipe(
       catchError((error: any) => Observable.throw(error.json())),
     );
   }
+
+  public findPeopleForSpecies(id: string): Observable<Person[]> {
+    return this.http.get<Person[]>(urls.peopleUrl).pipe(
+      map((people: Person[]) => {
+        return people.filter((p: Person) => isOfSpecies(p, id));
+      }),
+      catchError((error: any) => Observable.throw(error.json())),
+    );
+  }
+
+}
+
+function isOfSpecies(person: Person, id: string): boolean {
+  const url = `${urls.speciesUrl}/${id}`;
+  return person.species === url;
+}
+
+function isInMovie(p: Person, id: string): boolean {
+  const url = `${urls.filmUrl}/${id}`;
+  return p.films.some(u => u === url);
 }

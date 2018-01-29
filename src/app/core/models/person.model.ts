@@ -6,4 +6,5 @@ export interface Person {
   eye_color: string;
   hair_color: string;
   films: string[];
+  species: string;
 }

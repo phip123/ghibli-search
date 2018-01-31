@@ -17,6 +17,8 @@ export class LocationItemComponent implements OnInit {
   location$: Observable<Location>;
   people$: Observable<Person[]>;
   films$: Observable<Film[]>;
+  filmsForLocationLoading$: Observable<boolean>;
+  peopleForLocationLoading$: Observable<boolean>;
 
   constructor(private store: Store<fromStore.SearchState>) {
   }
@@ -25,6 +27,8 @@ export class LocationItemComponent implements OnInit {
     this.resetStore();
     this.people$ = this.store.select(fromStore.getPeopleForLocation);
     this.films$ = this.store.select(fromStore.getFilmsForLocation);
+    this.filmsForLocationLoading$ = this.store.select(fromStore.getFilmsForLocationLoading);
+    this.peopleForLocationLoading$ = this.store.select(fromStore.getPeopleForLocationLoading);
     this.location$ = this.store.select(fromStore.getSelectedLocation).pipe(
       tap((location: Location) => {
         if (location && location.residents && location.films) {

@@ -17,12 +17,14 @@ export class PersonItemComponent implements OnInit {
 
   person$: Observable<Person>;
   species$: Observable<Species>;
+  speciesLoading$: Observable<boolean>;
 
   constructor(private store: Store<fromStore.SearchState>) {
   }
 
   ngOnInit() {
     this.species$ = this.store.select(fromStore.getSpeciesForPerson);
+    this.speciesLoading$ = this.store.select(fromStore.getSpeciesForPersonLoading);
     this.person$ = this.store.select(fromStore.getSelectedPerson).pipe(
       tap((person: Person) => {
         if (person && person.id) {

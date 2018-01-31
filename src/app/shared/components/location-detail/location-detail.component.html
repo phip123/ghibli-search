@@ -12,12 +12,17 @@
       <p class="mat-typography">Terrain: {{location.terrain}}</p>
       <p class="mat-typography">Surface Water: {{location.surface_water}}</p>
       <mat-accordion>
-        <mat-expansion-panel [hideToggle]="!people.length">
+        <mat-expansion-panel
+          [disabled]="!people.length || peopleLoading"
+          [hideToggle]="!people.length || peopleLoading">
           <mat-expansion-panel-header>
             <mat-panel-title>
               People
             </mat-panel-title>
-            <mat-panel-description *ngIf="!people.length">
+            <mat-panel-description *ngIf="peopleLoading">
+              <mat-spinner [diameter]="25" color="accent"></mat-spinner>
+            </mat-panel-description>
+            <mat-panel-description *ngIf="!people.length && !peopleLoading">
               No persons available
             </mat-panel-description>
           </mat-expansion-panel-header>
@@ -30,12 +35,17 @@
         </mat-expansion-panel>
       </mat-accordion>
       <mat-accordion>
-        <mat-expansion-panel [hideToggle]="!films.length">
+        <mat-expansion-panel
+          [disabled]="!films.length || filmsLoading"
+          [hideToggle]="!films.length || filmsLoading">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Movies
             </mat-panel-title>
-            <mat-panel-description *ngIf="!films.length">
+            <mat-panel-description *ngIf="filmsLoading">
+              <mat-spinner [diameter]="25" color="accent"></mat-spinner>
+            </mat-panel-description>
+            <mat-panel-description *ngIf="!films.length && !filmsLoading">
               No persons available
             </mat-panel-description>
           </mat-expansion-panel-header>

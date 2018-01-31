@@ -47,6 +47,23 @@ export const getPeopleForSpecies = createSelector(
   fromPeople.getPeopleForSpecies,
 );
 
+export const getPeopleForSpeciesLoading = createSelector(
+  getPeopleState,
+  fromPeople.getPeopleForSpeciesLoading,
+);
+
+export const getPeopleForLocationLoading = createSelector(
+  getPeopleState,
+  fromPeople.getPeopleForLocationLoading,
+);
+
+export const getPeopleForFilmLoading = createSelector(
+  getPeopleState,
+  fromPeople.getPeopleForFilmLoading,
+);
+
+
+
 export const getPeopleForLocation = createSelector(
   getPeopleState,
   fromPeople.getPeopleForLocation,

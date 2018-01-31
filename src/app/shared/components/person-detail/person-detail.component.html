@@ -15,16 +15,21 @@
       <p class="mat-typography">Hair Color: {{person.hair_color}}</p>
 
       <mat-accordion>
-        <mat-expansion-panel [hideToggle]="species.name.length == 0">
+        <mat-expansion-panel
+          [hideToggle]="species.name.length == 0 || speciesLoading"
+          [disabled]="species.name.length == 0 || speciesLoading">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Species
             </mat-panel-title>
-            <mat-panel-description *ngIf="species.name.length == 0">
+            <mat-panel-description *ngIf="species.name.length == 0 && !speciesLoading">
               No species available
             </mat-panel-description>
+            <mat-panel-description *ngIf="speciesLoading">
+              <mat-spinner [diameter]="25" color="accent"></mat-spinner>
+            </mat-panel-description>
           </mat-expansion-panel-header>
-          <div *ngIf="species.name.length != 0">
+          <div *ngIf="species.name.length != 0 && !speciesLoading">
             <p class="mat-typography">Name: {{species.name}}</p>
             <p class="mat-typography">Classification: {{species.classification}}</p>
             <p class="mat-typography"></p>

@@ -44,3 +44,8 @@ export const getFilmsForLocation = createSelector(
   getFilmState,
   fromFilms.getFilmsForLocation,
 );
+
+export const getFilmsForLocationLoading = createSelector(
+  getFilmState,
+  fromFilms.getFilmsForLocationLoading,
+);

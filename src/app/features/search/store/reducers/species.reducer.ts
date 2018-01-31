@@ -1,7 +1,6 @@
 import * as fromSpecies from '../actions/species.action';
 import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import {Species} from '@app/core/models/species.model';
-import * as fromPersons from '@app/features/search/store/actions/people.actions';
 
 export const speciesAdapter = createEntityAdapter<Species>();
 
@@ -10,6 +9,7 @@ export interface SpeciesState extends EntityState<Species> {
   loading: boolean;
   filter: string;
   speciesForPerson: Species;
+  speciesForPersonLoading: boolean;
   selectedSpecies: Species[];
   filteredSpecies: Species[];
 }
@@ -32,6 +32,7 @@ const defaultSpecies: SpeciesState = {
   filter: '',
   selectedSpecies: [],
   speciesForPerson: EMPTY_SPECIES,
+  speciesForPersonLoading: false,
   filteredSpecies: [],
 };
 
@@ -42,12 +43,28 @@ export const initialState: SpeciesState = speciesAdapter.getInitialState(
 export function reducer(state = initialState,
                         action: fromSpecies.SpeciesAction): SpeciesState {
   switch (action.type) {
+
+    case fromSpecies.LOAD_SPECIES_FOR_PERSON: {
+      return {
+        ...state,
+        speciesForPersonLoading: true,
+      };
+    }
+
     case fromSpecies.LOAD_SPECIES_FOR_PERSON_SUCCESS: {
       const newState = speciesAdapter.addOne(action.payload, state);
       const speciesForPerson = action.payload;
       return {
         ...newState,
         speciesForPerson,
+        speciesForPersonLoading: false,
+      };
+    }
+
+    case fromSpecies.LOAD_SPECIES_FOR_PERSON_FAIL: {
+      return {
+        ...state,
+        speciesForPersonLoading: false,
       };
     }
 
@@ -83,7 +100,7 @@ export function reducer(state = initialState,
       const newState = speciesAdapter.addAll(species, state);
       let filteredSpecies = [];
 
-      if (newState.filter == '') {
+      if (newState.filter === '') {
         filteredSpecies = species;
       }
 
@@ -112,6 +129,7 @@ export const selectedSpecies = (state: SpeciesState) => state.selectedSpecies;
 export const filteredSpecies = (state: SpeciesState) => state.filteredSpecies;
 export const getSpeciesLoaded = (state: SpeciesState) => state.loaded;
 export const getSpeciesForPerson = (state: SpeciesState) => state.speciesForPerson;
+export const getSpeciesForPersonLoading = (state: SpeciesState) => state.speciesForPersonLoading;
 export const {
   selectIds,
   selectEntities,

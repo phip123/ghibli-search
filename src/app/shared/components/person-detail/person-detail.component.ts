@@ -16,6 +16,9 @@ export class PersonDetailComponent implements OnInit {
   @Input('species')
   species: Species;
 
+  @Input('speciesLoading')
+  speciesLoading: boolean;
+
   constructor() {
   }
 

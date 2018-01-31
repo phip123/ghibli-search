@@ -2,7 +2,6 @@ import * as fromFeature from '../reducers';
 import * as fromSpecies from '../reducers/species.reducer';
 import {createSelector} from '@ngrx/store';
 import * as fromRoot from '@app/root/store';
-import {Person} from '@app/core/models/person.model';
 import {Species} from '@app/core/models/species.model';
 
 export const getSpeciesState = createSelector(
@@ -39,6 +38,12 @@ export const getSpeciesForPerson = createSelector(
   getSpeciesState,
   fromSpecies.getSpeciesForPerson,
 );
+
+export const getSpeciesForPersonLoading = createSelector(
+  getSpeciesState,
+  fromSpecies.getSpeciesForPersonLoading,
+);
+
 
 export const getSpeciesLoaded = createSelector(
   getSpeciesState,

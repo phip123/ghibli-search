@@ -12,6 +12,9 @@ export interface PersonState extends EntityState<Person> {
   filteredPeople: Person[];
   peopleForSpecies: Person[];
   peopleForLocation: Person[];
+  peopleForSpeciesLoading: boolean;
+  peopleForLocationLoading: boolean;
+  peopleForFilmLoading: boolean;
 }
 
 
@@ -25,6 +28,9 @@ const defaultPerson: PersonState = {
   filteredPeople: [],
   peopleForSpecies: [],
   peopleForLocation: [],
+  peopleForSpeciesLoading: false,
+  peopleForLocationLoading: false,
+  peopleForFilmLoading: false,
 };
 
 export const initialState: PersonState = personAdapter.getInitialState(
@@ -34,12 +40,28 @@ export const initialState: PersonState = personAdapter.getInitialState(
 export function reducer(state = initialState,
                         action: fromPersons.PersonsActions): PersonState {
   switch (action.type) {
+
+    case fromPersons.LOAD_PERSONS_FOR_FILM: {
+      return {
+        ...state,
+        peopleForFilmLoading: true,
+      };
+    }
+
     case fromPersons.LOAD_PERSONS_FOR_FILM_SUCCESS: {
       state = personAdapter.addAll(action.payload, state);
       const selectesdPeople = action.payload;
       return {
         ...state,
         selectedPeople: selectesdPeople,
+        peopleForFilmLoading: false
+      };
+    }
+
+    case fromPersons.LOAD_PEOPLE_FOR_SPECIES: {
+      return {
+        ...state,
+        peopleForSpeciesLoading: true,
       };
     }
 
@@ -49,6 +71,7 @@ export function reducer(state = initialState,
       return {
         ...state,
         peopleForSpecies,
+        peopleForSpeciesLoading: false,
       };
     }
 
@@ -105,12 +128,20 @@ export function reducer(state = initialState,
       };
     }
 
+    case fromPersons.LOAD_PEOPLE_FOR_LOCATION: {
+      return {
+        ...state,
+        peopleForLocationLoading: true,
+      };
+    }
+
     case fromPersons.LOAD_PEOPLE_FOR_LOCATION_SUCCESS: {
       state = personAdapter.addAll(action.payload, state);
       const peopleForLocation = action.payload;
       return {
         ...state,
         peopleForLocation,
+        peopleForLocationLoading: false,
       };
     }
   }
@@ -119,6 +150,7 @@ export function reducer(state = initialState,
 }
 
 export const selectedPeople = (state: PersonState) => state.selectedPeople;
+export const getPeopleForFilmLoading = (state: PersonState) => state.peopleForFilmLoading;
 export const filteredPeople = (state: PersonState) => state.filteredPeople;
 export const getPeopleLoaded = (state: PersonState) => state.loaded;
 export const {
@@ -128,4 +160,6 @@ export const {
   selectTotal,
 } = personAdapter.getSelectors();
 export const getPeopleForSpecies = (state: PersonState) => state.peopleForSpecies;
+export const getPeopleForSpeciesLoading = (state: PersonState) => state.peopleForSpeciesLoading;
 export const getPeopleForLocation = (state: PersonState) => state.peopleForLocation;
+export const getPeopleForLocationLoading = (state: PersonState) => state.peopleForLocationLoading;

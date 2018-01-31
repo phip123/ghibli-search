@@ -28,6 +28,18 @@ export class PersonsEffect {
   );
 
   @Effect()
+  loadPeopleForLocation$ = this.actions$.ofType(peopleActions.LOAD_PEOPLE_FOR_LOCATION).pipe(
+    map((action: peopleActions.LoadPeopleForLocation) => action.payload),
+    switchMap((residents: string[]) => {
+      return this.personsService.findPeopleForLocation(residents)
+        .pipe(
+          map(people => new peopleActions.LoadPeopleForLocationSuccess(people)),
+          catchError(error => of(new peopleActions.LoadPeopleForLocationFail(error)))
+        );
+    })
+  );
+
+  @Effect()
   loadPeopleForSpecies$ = this.actions$.ofType(peopleActions.LOAD_PEOPLE_FOR_SPECIES).pipe(
     map((action: peopleActions.LoadPeopleForSpecies) => action.payload),
     switchMap((id: string) => {

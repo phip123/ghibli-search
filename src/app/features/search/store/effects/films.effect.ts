@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import {Injectable} from '@angular/core';
+import {Actions, Effect} from '@ngrx/effects';
 
 import * as fromServices from '@app/core/services';
 import * as filmActions from '../actions/films.action';
-import { catchError, map, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import {catchError, map, switchMap} from 'rxjs/operators';
+import {of} from 'rxjs/observable/of';
 
 @Injectable()
 export class FilmsEffect {
@@ -23,6 +23,18 @@ export class FilmsEffect {
           catchError(error => of(new filmActions.LoadFilmsFail(error))),
         );
     }),
+  );
+
+  @Effect()
+  loadFilmsForLocation = this.actions$.ofType(filmActions.LOAD_FILMS_FOR_LOCATION).pipe(
+    map((action: filmActions.LoadFilmsForLocation) => action.payload),
+    switchMap((films: string []) => {
+      return this.filmService.findFilmsForLocation(films)
+        .pipe(
+          map(films => new filmActions.LoadFilmsForLocationSuccess(films)),
+          catchError(err => of(new filmActions.LoadFilmsForLocationFail(err))),
+        );
+    })
   );
 
   @Effect()

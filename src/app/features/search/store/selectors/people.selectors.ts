@@ -47,6 +47,11 @@ export const getPeopleForSpecies = createSelector(
   fromPeople.getPeopleForSpecies,
 );
 
+export const getPeopleForLocation = createSelector(
+  getPeopleState,
+  fromPeople.getPeopleForLocation,
+);
+
 
 
 

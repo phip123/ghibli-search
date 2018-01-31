@@ -9,6 +9,7 @@ export interface FilmState extends EntityState<Film> {
   loading: boolean;
   filter: string;
   filteredFilms: Film[];
+  filmsForLocation: Film[];
 }
 
 const defaultFilm: FilmState = {
@@ -18,14 +19,13 @@ const defaultFilm: FilmState = {
   loading: false,
   filter: '',
   filteredFilms: [],
+  filmsForLocation: [],
 };
 
 export const initialState: FilmState = filmAdapter.getInitialState(defaultFilm);
 
-export function reducer(
-  state = initialState,
-  action: fromFilms.FilmsAction,
-): FilmState {
+export function reducer(state = initialState,
+                        action: fromFilms.FilmsAction,): FilmState {
   switch (action.type) {
     case fromFilms.LOAD_FILMS: {
       return {
@@ -90,9 +90,18 @@ export function reducer(
     case fromFilms.LOAD_FILM_SUCCESS: {
       const changes = action.payload;
       const id = changes.id;
-      state = filmAdapter.addOne({ id, ...changes }, state);
+      state = filmAdapter.addOne({id, ...changes}, state);
       return {
         ...state
+      };
+    }
+
+    case fromFilms.LOAD_FILMS_FOR_LOCATION_SUCCESS: {
+      const newstate = filmAdapter.addAll(action.payload, state);
+      const filmsForLocation = action.payload;
+      return {
+        ...newstate,
+        filmsForLocation
       };
     }
   }
@@ -104,6 +113,7 @@ export const getFilmsLoaded = (state: FilmState) => state.loaded;
 export const getFilmsEntities = (state: FilmState) => state.entities;
 export const getFilmFilter = (state: FilmState) => state.filter;
 export const getFilterFilms = (state: FilmState) => state.filteredFilms;
+export const getFilmsForLocation = (state: FilmState) => state.filmsForLocation;
 export const {
   selectIds,
   selectEntities,

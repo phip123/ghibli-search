@@ -11,6 +11,42 @@
       <p class="mat-typography">Climate: {{location.climate}}</p>
       <p class="mat-typography">Terrain: {{location.terrain}}</p>
       <p class="mat-typography">Surface Water: {{location.surface_water}}</p>
+      <mat-accordion>
+        <mat-expansion-panel [hideToggle]="!people.length">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              People
+            </mat-panel-title>
+            <mat-panel-description *ngIf="!people.length">
+              No persons available
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item *ngFor="let person of people">
+              <mat-icon mat-list-icon>face</mat-icon>
+              <p mat-line>{{person.name}}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-accordion>
+        <mat-expansion-panel [hideToggle]="!films.length">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Movies
+            </mat-panel-title>
+            <mat-panel-description *ngIf="!films.length">
+              No persons available
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <mat-list>
+            <mat-list-item *ngFor="let film of films">
+              <mat-icon mat-list-icon>movie</mat-icon>
+              <p mat-line>{{film.title}}</p>
+            </mat-list-item>
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-card-content>
   </mat-card>
 </div>

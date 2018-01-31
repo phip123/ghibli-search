@@ -1,4 +1,4 @@
-import { createSelector } from '@ngrx/store';
+import {createSelector} from '@ngrx/store';
 
 import * as fromRoot from '@app/root/store';
 import * as fromFeature from '../reducers';
@@ -38,4 +38,9 @@ export const getSelectedFilm = createSelector(
   (entities, router): Film => {
     return router.state && entities[router.state.params.filmId];
   }
+);
+
+export const getFilmsForLocation = createSelector(
+  getFilmState,
+  fromFilms.getFilmsForLocation,
 );

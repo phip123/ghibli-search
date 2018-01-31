@@ -4,6 +4,7 @@ import {Person} from '../models/person.model';
 import {Observable} from 'rxjs/Observable';
 import {catchError, map} from 'rxjs/operators';
 import * as urls from '../util/url.constants';
+import {forkJoin} from 'rxjs/observable/forkJoin';
 
 @Injectable()
 export class PersonsService {
@@ -42,6 +43,13 @@ export class PersonsService {
     );
   }
 
+  public findPeopleForLocation(residents: string[]): Observable<Person[]> {
+    const list: Observable<Person>[] = residents.map(s => this.http.get<Person>(s).pipe(
+      catchError(err => Observable.throw(err.json()))
+    ));
+
+    return forkJoin(...list);
+  }
 }
 
 function isOfSpecies(person: Person, id: string): boolean {

@@ -61,6 +61,7 @@ export class SetLocationsFilter implements Action {
   }
 }
 
+
 export type LocationsAction =
   | LoadLocation
   | LoadLocationFail

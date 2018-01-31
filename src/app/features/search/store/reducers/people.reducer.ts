@@ -11,6 +11,7 @@ export interface PersonState extends EntityState<Person> {
   selectedPeople: Person[];
   filteredPeople: Person[];
   peopleForSpecies: Person[];
+  peopleForLocation: Person[];
 }
 
 
@@ -23,6 +24,7 @@ const defaultPerson: PersonState = {
   selectedPeople: [],
   filteredPeople: [],
   peopleForSpecies: [],
+  peopleForLocation: [],
 };
 
 export const initialState: PersonState = personAdapter.getInitialState(
@@ -102,6 +104,15 @@ export function reducer(state = initialState,
         ...state
       };
     }
+
+    case fromPersons.LOAD_PEOPLE_FOR_LOCATION_SUCCESS: {
+      state = personAdapter.addAll(action.payload, state);
+      const peopleForLocation = action.payload;
+      return {
+        ...state,
+        peopleForLocation,
+      };
+    }
   }
 
   return state;
@@ -117,3 +128,4 @@ export const {
   selectTotal,
 } = personAdapter.getSelectors();
 export const getPeopleForSpecies = (state: PersonState) => state.peopleForSpecies;
+export const getPeopleForLocation = (state: PersonState) => state.peopleForLocation;

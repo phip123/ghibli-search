@@ -1,7 +1,5 @@
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { createFeatureSelector, createSelector } from '@ngrx/store';
+import {createEntityAdapter, EntityState} from '@ngrx/entity';
 import * as fromFilms from '../actions/films.action';
-import { getAllFilms } from '../selectors';
 import {Film} from '@app/core/models/film.model';
 
 export const filmAdapter = createEntityAdapter<Film>();
@@ -78,6 +76,14 @@ export function reducer(
         ...state,
         filter: action.payload,
         filteredFilms,
+      };
+    }
+
+    case fromFilms.LOAD_FILM_FAIL: {
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
       };
     }
 

@@ -1,0 +1,16 @@
+<div class="container" *ngIf="location">
+  <mat-card class="mat-typography detail-card">
+    <mat-card-header style="display: inline !important;">
+      <mat-card-title-group>
+        <mat-icon>filter_hdr</mat-icon>
+
+        <mat-card-title>{{location.name}}</mat-card-title>
+      </mat-card-title-group>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="mat-typography">Climate: {{location.climate}}</p>
+      <p class="mat-typography">Terrain: {{location.terrain}}</p>
+      <p class="mat-typography">Surface Water: {{location.surface_water}}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

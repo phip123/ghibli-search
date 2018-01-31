@@ -24,7 +24,18 @@ export const ROUTES: Routes = [
   },
   {
     path: 'locations',
-    component: fromContainers.LocationsSearchComponent,
+    children: [
+      {
+        path: ':locationId',
+        canActivate: [fromGuards.LocationExistsGuard],
+        component: fromContainers.LocationItemComponent
+      },
+      {
+        path: '',
+        canActivate: [fromGuards.LocationsGuard],
+        component: fromContainers.LocationsSearchComponent
+      }
+    ]
   },
   {
     path: 'people',

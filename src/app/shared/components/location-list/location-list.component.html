@@ -1,0 +1,20 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let location of locations" class="mat-body-1">
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-typography">
+        {{location.name}}
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <p class="mat-typography">Climate: {{location.climate}}</p>
+    <p class="mat-typography">Terrain: {{location.terrain}}</p>
+    <p class="mat-typography">Surface Water: {{location.surface_water}}</p>
+    <mat-action-row>
+      <a [routerLink]="['/search/locations/', location.id]" mat-icon-button color="primary">
+        <mat-icon>info_outline</mat-icon>
+      </a>
+
+    </mat-action-row>
+  </mat-expansion-panel>
+  <p></p> <!-- Only exists so the last expansion panel doesn't get cut  -->
+</mat-accordion>
+

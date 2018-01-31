@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { SearchState } from '../../store/reducers';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/Observable';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {SearchState} from '../../store/reducers';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs/Observable';
 
 import * as fromStore from '../../store';
 import {Film} from '@app/core/models/film.model';
@@ -21,7 +21,7 @@ export class FilmsSearchComponent implements OnInit {
     this.films$ = this.store.select(fromStore.getFilteredFilms);
   }
 
-  //TODO: when user suche eintippt, und router ändert, nachher wieder filter einstellen
+  // TODO: when user suche eintippt, und router ändert, nachher wieder filter einstellen
 
   onKey(val: string) {
     this.store.dispatch(new fromStore.SetFilmFilter(val));

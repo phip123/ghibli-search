@@ -1,5 +1,7 @@
-<div class="pad">
-  <p style="text-align: center;">Work in progress</p>
-  <mat-icon style>warning</mat-icon>
-  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+<div class="container">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Search for locations" #filter type="text" (keyup)="onKey(filter.value)">
+  </mat-form-field>
+  <app-location-list style="width: 90%" [locations]="locations$ | async"></app-location-list>
+
 </div>
